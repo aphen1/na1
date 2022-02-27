@@ -4,7 +4,6 @@
 #include "input.hpp"
 #include "inputMock.hpp"
 #include "boardMock.hpp"
-
 #include "player.hpp"
 using namespace testing;
 
@@ -12,7 +11,9 @@ using namespace testing;
 class PlayerTest : public ::testing::Test
 {
     public:
-  NiceMock<InputMock> inputMock;
+    Board board;
+ NiceMock<InputMock> inputMock;
+  Player plejer(board,inputMock,FieldState::EMPTY);
     
     protected:
     PlayerTest() {};
@@ -25,8 +26,7 @@ class PlayerTest : public ::testing::Test
 
 TEST_F(PlayerTest, a)
 {
-    Board b;
-    //Player plejer{b,inputMock,FieldState::EMPTY};
+   
     auto move = std::pair<std::size_t, std::size_t>(1u,2u);
     EXPECT_CALL(PlayerTest::inputMock,getInput()).WillOnce(Return(move));
     inputMock.getInput();
