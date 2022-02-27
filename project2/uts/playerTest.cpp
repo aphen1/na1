@@ -13,8 +13,6 @@ class PlayerTest : public ::testing::Test
     public:
     Board board;
  NiceMock<InputMock> inputMock;
-  Player plejer(board,inputMock,FieldState::EMPTY);
-    
     protected:
     PlayerTest() {};
     ~PlayerTest() override {};
@@ -26,10 +24,10 @@ class PlayerTest : public ::testing::Test
 
 TEST_F(PlayerTest, a)
 {
-   
+   Player plejer(board,inputMock,FieldState::EMPTY);
     auto move = std::pair<std::size_t, std::size_t>(1u,2u);
     EXPECT_CALL(PlayerTest::inputMock,getInput()).WillOnce(Return(move));
-    inputMock.getInput();
+    //inputMock.getInput();
 }
 
 
